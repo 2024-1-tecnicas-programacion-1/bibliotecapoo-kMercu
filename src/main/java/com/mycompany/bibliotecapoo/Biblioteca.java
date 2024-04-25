@@ -24,9 +24,10 @@ public class Biblioteca {
      
     }
     
-    public void mostrarLibros(){
-        libros.get(0);
-        System.out.println(libros);
+    public LinkedList<Libro> mostrarLibros(){
+      
+        return libros;
+        
     }
     
     public void mostrarLibrosNoLeidos(){
