@@ -46,10 +46,6 @@ public class Libro {
      * Complejidad temporal: O(1) - Tiempo constante.
      */
     public boolean esAntiguo() {
-        if (yearOfPublication<1974){
-        return true;
-        } else {
-        return false;
-        }
+        return yearOfPublication < 1974;
     }
 }
