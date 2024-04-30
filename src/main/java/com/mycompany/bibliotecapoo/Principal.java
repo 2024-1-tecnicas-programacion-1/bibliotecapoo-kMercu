@@ -1,10 +1,13 @@
 package com.mycompany.bibliotecapoo;
 
 import java.util.Scanner;
-import java.util.LinkedList;
 
 public class Principal {
     
+    /**
+     * Método main donde se inicia la ejecución del programa.
+     * Complejidad temporal: O(N) - Tiempo lineal.
+     */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Biblioteca biblioteca = new Biblioteca();
@@ -19,16 +22,16 @@ public class Principal {
             System.out.println("5) Mostrar libros no leídos");
             System.out.println("0) Salir");
             System.out.println("Seleccione una opción:");
-
+            
             opcion = sc.nextInt();
-            sc.nextLine();
+            sc.nextLine(); 
 
             switch (opcion) {
                 case 1:
                     ingresarLibro(biblioteca, sc);
                     break;
                 case 2:
-                    mostrarLibros(biblioteca);
+                    biblioteca.mostrarLibros();
                     break;
                 case 3:
                     buscarLibro(biblioteca, sc);
@@ -51,42 +54,43 @@ public class Principal {
         sc.close();
     }
     
+    /**
+     * Método para ingresar un nuevo libro en la biblioteca.
+     * Complejidad temporal: O(1) - Tiempo constante.
+     */
     private static void ingresarLibro(Biblioteca biblioteca, Scanner sc) {
         System.out.println("Ingrese el título del libro:");
-        String title = sc.nextLine();
+        String titulo = sc.nextLine();
         
         System.out.println("Ingrese el género del libro:");
-        String genre = sc.nextLine();
+        String genero = sc.nextLine();
 
         System.out.println("Ingrese el autor del libro:");
-        String author = sc.nextLine();
+        String autor = sc.nextLine();
 
         System.out.println("Ingrese el año de publicación del libro:");
-        int yearOfPublication = sc.nextInt();
-        sc.nextLine();
+        int anoPublicacion = sc.nextInt();
+        sc.nextLine(); // Consumir la nueva línea después de leer un entero
 
-        Libro libro = new Libro(title, author, yearOfPublication, genre);
+        Libro libro = new Libro(titulo, autor, anoPublicacion, genero);
         biblioteca.registrarLibro(libro);
         System.out.println("Libro registrado exitosamente.");
     }
     
-    private static void mostrarLibros(Biblioteca biblioteca) {
-        LinkedList<Libro> libros = biblioteca.libros;
-        if (libros.isEmpty()) {
-            System.out.println("No hay libros registrados en la biblioteca.");
-        } else {
-            for (Libro libro : libros) {
-                System.out.println(libro.mostrarInformacion());
-            }
-        }
-    }
-    
+    /**
+     * Método para buscar un libro por una palabra clave.
+     * Complejidad temporal: O(1) - Tiempo constante.
+     */
     private static void buscarLibro(Biblioteca biblioteca, Scanner sc) {
         System.out.println("Ingrese la palabra clave para buscar:");
         String palabraBusqueda = sc.nextLine();
         biblioteca.buscarLibro(palabraBusqueda);
     }
     
+    /**
+     * Método para marcar un libro como leído.
+     * Complejidad temporal: O(N) - Tiempo lineal.
+     */
     private static void marcarLibroLeido(Biblioteca biblioteca, Scanner sc) {
         System.out.println("Ingrese el título del libro que desea marcar como leído:");
         String titulo = sc.nextLine();
@@ -99,7 +103,7 @@ public class Principal {
                 break;
             }
         }
-        if (!encontrado) {
+        if (encontrado) {
             System.out.println("Libro no encontrado.");
         }
     }

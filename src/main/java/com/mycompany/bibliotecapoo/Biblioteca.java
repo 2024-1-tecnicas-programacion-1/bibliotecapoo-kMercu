@@ -6,49 +6,68 @@ public class Biblioteca {
     
     public LinkedList<Libro> libros;
     
+    // Constructor
+    /**
+     * Método para inicializar la biblioteca.
+     * Complejidad temporal: O(1) - Tiempo constante.
+     */
     public Biblioteca(){
         libros = new LinkedList<>();
     }
     
-    public void registrarLibro(Libro libro) {
-        libros.add(libro);
+    /**
+     * Método para registrar un libro en la biblioteca.
+     * Complejidad temporal: O(1) - Tiempo constante.
+     */
+    public void registrarLibro(Libro book) {
+        libros.add(book);
     }
     
-    public void buscarLibro(String palabraBusqueda){
+    /**
+     * Método para buscar un libro por una palabra clave.
+     * Complejidad temporal: O(N) - Tiempo lineal.
+     */
+    public void buscarLibro(String keyword){
         boolean encontrado = false;
-        for (Libro libro : libros) {
-            if (libro.mostrarInformacion().toLowerCase().contains(palabraBusqueda.toLowerCase())) {
-                System.out.println(libro.mostrarInformacion());
+        for (Libro book : libros) {
+            if (book.mostrarInformacion().toLowerCase().contains(keyword.toLowerCase())) {
+                System.out.println(book.mostrarInformacion());
                 encontrado = true;
             }
         }
-        if (!encontrado) {
+        if (encontrado) {
             System.out.println("Libro no encontrado.");
         }
     }
     
+    /**
+     * Método para mostrar todos los libros de la biblioteca.
+     * Complejidad temporal: O(N) - Tiempo lineal.
+     */
     public void mostrarLibros(){
-        
-        // El is.empty en este caso lo utilice para saber si esta lista estaba vacia o no con un condicional
-         if (libros.isEmpty()) {
-         
+        if (libros.isEmpty()) {
             System.out.println("No hay libros registrados en la biblioteca.");
         } else {
-            for (Libro libro : libros) {
-                System.out.println(libro.mostrarInformacion());
+            for (Libro book : libros) {
+                System.out.println(book.mostrarInformacion());
             }
         }
     }
     
+    /**
+     * Método para mostrar los libros no leídos de la biblioteca.
+     * Complejidad temporal: O(N) - Tiempo lineal.
+     */
     public void mostrarLibrosNoLeidos(){
-        boolean hayNoLeidos = false;
-        for (Libro libro : libros) {
-            if (!libro.getLeido()) {
-                System.out.println(libro.mostrarInformacion());
-                hayNoLeidos = true;
+        boolean noHayLeidos = false;
+        for (Libro book : libros) {
+            if (book.getRead()) {
+                System.out.println(book.mostrarInformacion());
+                noHayLeidos = true;
             }
         }
-        if (!hayNoLeidos) {
+        if (noHayLeidos) {
             System.out.println("Todos los libros han sido leídos.");
         }
     }
+}
